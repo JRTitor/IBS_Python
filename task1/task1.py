@@ -25,5 +25,5 @@ def average_age_by_position(s:str='path_to_csv_file.csv') -> Dict[str, float]:
     for _, row in grouped_data.iterrows():
         position = row['Должность']
         avg_age_position[position] = row['Возраст']
-    
+    print(avg_age_position)
     return avg_age_position
