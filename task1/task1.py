@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from typing import Dict
 
 def check_columns(workers_table:pd.DataFrame) -> bool:
@@ -24,6 +25,5 @@ def average_age_by_position(s:str='path_to_csv_file.csv') -> Dict[str, float]:
 
     for _, row in grouped_data.iterrows():
         position = row['Должность']
-        avg_age_position[position] = row['Возраст']
-    print(avg_age_position)
+        avg_age_position[position] = None  if pd.isna(row['Возраст']) else row['Возраст']  # чтобы в json был null a не nan
     return avg_age_position
