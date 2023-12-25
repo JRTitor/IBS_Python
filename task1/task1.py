@@ -1,6 +1,6 @@
 import pandas as pd
-import numpy as np
 from typing import Dict
+import io
 
 def check_columns(workers_table:pd.DataFrame) -> bool:
     '''
@@ -14,10 +14,10 @@ def average_age_by_position(s:str='path_to_csv_file.csv') -> Dict[str, float]:
     вход: file.csv с колонками "Имя", "Возраст", "Должность"
     выход: словарь вида: d["Должность"] == средний_возраст_по_должности
     '''
-    workers_table = pd.read_csv(s)
+    workers_table = pd.read_csv(io.BytesIO(s))
     
     if  not check_columns(workers_table):
-        raise ValueError(f'Файл {s} не содержит нужные столбцы: Имя, Возраст, Должность')
+        raise ValueError(f'Невалидный файл')
     
 
     avg_age_position = {}

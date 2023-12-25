@@ -1,25 +1,17 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, File, UploadFile
 from typing import Dict
 from task1 import average_age_by_position
-from urllib.parse import unquote
 import json
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@app.get("/aaaa")
-async def root():
-    return {"blayt": "i dont get it"}
-
-@app.get("/average_age_by_position/{path_to_file:path}")
-async def calculate_average_age(path_to_file:str) -> Dict[str, float]:
+@app.post("/average_age_by_position/")
+async def calculate_average_age(file: UploadFile = File(...)) :
     try:
-        result = average_age_by_position(path_to_file)
-        
-        return result
+        contents = await file.read() ## читаем файл и заносим в contents
+        result = average_age_by_position(contents)
+
+        return json.dumps(result, indent=4, ensure_ascii=False) ##  возвращаем json без аски символов, иначе мы не увидим русских букв
 
     except Exception as e:
         raise HTTPException(status_code=400, detail='Невалидный файл')
