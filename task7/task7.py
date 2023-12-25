@@ -1,13 +1,13 @@
-def chain_sum(x, *args):
+def chain_sum(num):
+    result = num
 
-  total = x
-  for arg in args:
-    total += arg
-  return total
+    def wrapper(num2=None):
+        nonlocal result
+        if num2 is None:
+            return result
+        result += num2
+        return wrapper
 
-
-print(chain_sum(5)())  # 5
-print(chain_sum(5)(2)())  # 7
-print(chain_sum(5)(100)(-10)())  # 95
+    return wrapper
 
 
