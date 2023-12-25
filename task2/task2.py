@@ -2,7 +2,7 @@ from typing import List
 
 def find_in_different_registers(words: List[str]) -> List[str]:
     d = dict()
-    res = []
+    
     for word in words:
         d[word] = d.get(word, 0) + 1
 

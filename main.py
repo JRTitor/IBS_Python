@@ -1,7 +1,13 @@
 from fastapi import FastAPI, HTTPException, File, UploadFile
-from typing import Dict
-from task1 import average_age_by_position
+from typing import List, Dict
+from task1.task1 import average_age_by_position
+from task2.task2 import find_in_different_registers
 import json
+from pydantic import BaseModel
+
+class Words(BaseModel):
+    words: List[str]
+
 app = FastAPI()
 
 
@@ -15,3 +21,13 @@ async def calculate_average_age(file: UploadFile = File(...)) :
 
     except Exception as e:
         raise HTTPException(status_code=400, detail='Невалидный файл')
+    
+@app.post("/find_in_different_registers", response_model=List[str])
+async def find_unique_words(words: Words):
+    try:
+        input_words = words.words
+        print(input_words)
+        unique_words = find_in_different_registers(input_words)
+        return unique_words
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
