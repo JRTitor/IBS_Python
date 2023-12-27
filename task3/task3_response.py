@@ -2,10 +2,13 @@ import requests
 
 # добавить задачу
 response = requests.put("http://127.0.0.1:8000/tasks", json={"task": "Новая задача", "status": False})
+print(response.json())
+
+response = requests.put("http://127.0.0.1:8000/tasks", json={"task": "Новая задача2", "status": True})
 print(response.json()) 
 
-# получить список задач
-response = requests.get("http://127.0.0.1:8000/tasks")
+# получить задачу по task_id (например, task_id=1)
+response = requests.get("http://127.0.0.1:8000/tasks/2")
 print(response.json())
 
 # Обновить задачи по task_id (например, task_id=1)

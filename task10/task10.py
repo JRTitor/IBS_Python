@@ -61,7 +61,8 @@ class DataGenerator:
         :param writer: Одна из реализаций классов потомков от BaseWriter
       """
       """Ваша реализация"""
-        if not self.data:
-            raise ValueError("Data not generated. Please generate data before saving to file.")
-        with open(path, "w") as file:
-            file.write(writer.write(self.data))
+      if not self.data:
+         raise ValueError("Data not generated. Please generate data before saving to file.")
+      
+      with open(path, "w") as file:
+         file.write(writer.write(self.data))
