@@ -18,7 +18,7 @@
    2) работу с запросами я написал в task3_response.py, вывод в командную строку
 
 
-4) ~task4 -- Работа с PostgreSQL и SQLAlchemy 
+4) ~~task4 -- Работа с PostgreSQL и SQLAlchemy~~
 1) task5 -- Тестирование
    1) добавил файл ``` unittests.py```, запуск ```pytest -q unittests.py```
 6) ~~task6 -- Контейнеризация приложения~~ 
